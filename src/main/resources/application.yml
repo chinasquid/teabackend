@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    username: root
+    password: 123
+    url: jdbc:mysql://localhost:3306/tea
+    driver-class-name: com.mysql.jdbc.Driver
+  servlet:
+    multipart:
+      max-request-size: 1000MB
+      max-file-size: 1000MB
+  aop:
+    auto: true
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+

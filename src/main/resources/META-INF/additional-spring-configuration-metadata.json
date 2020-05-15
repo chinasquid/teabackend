@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "spring.resources.mvc.static-path-pattern",
+      "type": "java.lang.String",
+      "description": "Description for spring.resources.mvc.static-path-pattern."
+    },
+    {
+      "name": "file.staticAccessPath",
+      "type": "java.lang.String",
+      "description": "Description for file.staticAccessPath."
+    }
+  ] }
