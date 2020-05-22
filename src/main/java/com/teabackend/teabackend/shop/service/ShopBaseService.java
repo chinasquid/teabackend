@@ -1,5 +1,6 @@
 package com.teabackend.teabackend.shop.service;
 
+import com.teabackend.teabackend.shop.bean.AddressItemVO;
 import com.teabackend.teabackend.shop.bean.ShopCarItemDTO;
 import com.teabackend.teabackend.shop.bean.ShopOrderItemVO;
 import com.teabackend.teabackend.shop.dao.ShopBaseDao;
@@ -41,5 +42,26 @@ public class ShopBaseService {
 
     public void setShopItemNumber(ShopCarItemDTO shopCarItemDTO) {
         shopBaseDao.updateShopItemNumber(shopCarItemDTO);
+    }
+
+    public void addNewAddress(AddressItemVO addressItemVO)throws Exception {
+        shopBaseDao.addNewAddress(addressItemVO);
+    }
+
+    /**
+     * 获取收货地址
+     * @param user_id
+     * @return
+     */
+    public ArrayList<AddressItemVO> getAllAddress(String user_id) {
+        return shopBaseDao.getAllAddress(user_id);
+    }
+
+    /**
+     * 删除单个地址
+     * @param address_id
+     */
+    public void deletedAddress(Integer address_id) {
+        shopBaseDao.deletedAddress(address_id);
     }
 }

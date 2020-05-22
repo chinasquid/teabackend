@@ -1,21 +1,22 @@
 package com.teabackend.teabackend.shop.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.teabackend.teabackend.comment.Bean.Result;
+import com.teabackend.teabackend.shop.bean.AddressItemDO;
+import com.teabackend.teabackend.shop.bean.AddressItemVO;
 import com.teabackend.teabackend.shop.bean.ShopCarItemDTO;
 import com.teabackend.teabackend.shop.bean.ShopOrderItemVO;
 import com.teabackend.teabackend.shop.service.ShopBaseService;
 import com.teabackend.teabackend.userbase.bean.UserBodyDO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author shuyang
@@ -107,4 +108,63 @@ public class ShopBaseController {
         result.success("保存成功");
         return result;
     }
+
+    @PostMapping("/addNewAddress")
+    public Result addNewAddress(@RequestBody AddressItemVO addressItemVO,HttpSession session){
+        Result result = new Result();
+        UserBodyDO userBodyDO = (UserBodyDO) session.getAttribute("user_body");
+        if (null == userBodyDO){
+            result.fail("请登录");
+            return result;
+        }
+        try {
+            shopBaseService.addNewAddress(addressItemVO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.fail("添加失败");
+            return result;
+        }
+        result.success("添加成功");
+        return result;
+    }
+    @GetMapping("/getAllAddress")
+    public Result getAllAddress(HttpSession session){
+        Result result = new Result();
+        UserBodyDO userBodyDO = (UserBodyDO) session.getAttribute("user_body");
+        if (null == userBodyDO){
+            result.fail("请登录");
+            return result;
+        }
+        ArrayList<AddressItemVO> addressItemVOS = new ArrayList<>();
+        try {
+            addressItemVOS = shopBaseService.getAllAddress(userBodyDO.getUser_id());
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.fail("获取收货地址失败");
+            return result;
+        }
+        result.success("获取成功！",addressItemVOS);
+        return result;
+    }
+
+    @PostMapping("/deletedAddress")
+    public Result deletedAddress(@RequestBody AddressItemVO addressItemVO , HttpSession session){
+        Result result = new Result();
+        UserBodyDO userBodyDO = (UserBodyDO) session.getAttribute("user_body");
+        Integer address_id = addressItemVO.getAddress_id();
+        if (null == userBodyDO){
+            result.fail("请登录");
+            return result;
+        }
+        try {
+            shopBaseService.deletedAddress(address_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result.fail("删除失败，请重试");
+            return result;
+        }
+        result.success("删除成功!");
+        return result;
+    }
+
 }

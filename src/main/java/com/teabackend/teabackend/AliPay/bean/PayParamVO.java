@@ -1,22 +1,18 @@
-package com.teabackend.teabackend.search.bean;
+package com.teabackend.teabackend.AliPay.bean;
 
 import lombok.Data;
 
 /**
  * @author shuyang
  * @Description:
- * @create 2020-05-14 21:57
+ * @create 2020-05-15 21:02
  */
 @Data
-public class GoodsItemDTO {
+public class PayParamVO {
     /**
      * 商品id
      */
-    private Integer goods_id;
-    /**
-     * 店铺id
-     */
-    private String store_id;
+    private String goods_id;
     /**
      * 商品标题
      */
@@ -26,15 +22,7 @@ public class GoodsItemDTO {
      */
     private String goods_describe;
     /**
-     * 图片虚拟访问地址
-     */
-    private String file_virtual_path;
-    /**
-     * 商品用途
-     */
-    private String purpose;
-    /**
-     * 商品类型
+     * 茶叶类型
      */
     private String tea_type;
     /**
@@ -42,7 +30,7 @@ public class GoodsItemDTO {
      */
     private String tea_variety;
     /**
-     * 商品品牌
+     * 茶叶品牌
      */
     private String tea_brand;
     /**
@@ -50,23 +38,39 @@ public class GoodsItemDTO {
      */
     private String tea_season;
     /**
-     * 商品单价
+     * 单价
      */
     private Double price;
     /**
+     * 数量
+     */
+    private Integer number;
+    /**
      * 邮费
      */
-    private Double post;
+    private String post;
     /**
-     * 商品评分
+     * 总价
      */
-    private Double score;
+    private Double all_price;
     /**
-     * 商家名称
+     * 商店名称
      */
     private String store_name;
     /**
-     * 购买数量
+     * 商店id
      */
-    private Integer number;
+    private String store_id;
+    /**
+     * 用户id
+     */
+    private String user_id;
+    /**
+     * 交易类型
+     */
+    private Integer payType;
+    /**
+     * 收货地址
+     */
+    private String receiving_address;
 }

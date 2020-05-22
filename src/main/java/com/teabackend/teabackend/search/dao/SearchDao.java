@@ -38,7 +38,7 @@ public interface SearchDao {
      * @param searchGoodsTypeVO 筛选选项
      * @return 商品列表
      */
-    @Select("<script>select a.id id ,goods_tittle,goods_describe,file_virtual_path,purpose,tea_type,tea_variety,tea_brand,tea_season,price,post,score,user_name\n" +
+    @Select("<script>select a.id goods_id ,goods_tittle,goods_describe,file_virtual_path,purpose,tea_type,tea_variety,tea_brand,tea_season,price,post,score,user_name\n" +
             "from temp_goods a \n" +
             "INNER JOIN user_body b on a.user_id = b.user_id \n" +
             "where goods_tittle!='' \n" +
@@ -55,7 +55,7 @@ public interface SearchDao {
      * @param goods_id 商品id
      * @return 商品详细信息
      */
-    @Select("select goods_tittle,goods_describe,file_virtual_path,purpose,tea_type,tea_variety,tea_brand,tea_season,price,post,score,user_name,score\n" +
+    @Select("select goods_tittle,goods_describe,file_virtual_path,purpose,tea_type,tea_variety,tea_brand,tea_season,price,post,score,user_name store_name,score,a.user_id store_id,a.id goods_id\n" +
             "from temp_goods a " +
             "INNER JOIN user_body b on a.user_id = b.user_id " +
             "where goods_tittle!='' " +

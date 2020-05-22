@@ -69,6 +69,7 @@ public class SearchController {
             result.fail("获取失败");
             return result;
         }
+        goodsItemDTO.setNumber(1);
         result.success("搜索成功！",goodsItemDTO);
         return result;
     }

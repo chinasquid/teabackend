@@ -12,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 //@Configuration
 public class FileUploadConfig extends WebMvcConfigurationSupport {
 
+
+
     String url = "/file/**";
     String path = "file:///D:/tea/business/798620/temp/";
 

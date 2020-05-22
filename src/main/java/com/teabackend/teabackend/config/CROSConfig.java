@@ -1,7 +1,6 @@
 package com.teabackend.teabackend.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -14,9 +13,26 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 @Configuration
 public class CROSConfig extends WebMvcConfigurationSupport {
 
+
     static String url = "/**";
     static String fileVisitHead = "file:///";
-    public static String systemPath = "D:/tea/";
+    public static String systemPath = "";
+
+    static {
+        String systemType = System.getProperties().getProperty("os.name");
+        if ("Windo".equals(systemType.substring(0,5))){
+            System.out.println("Windows系统");
+            System.out.println("systemPath:"+systemPath);
+            systemPath = "D:/tea/";
+            System.out.println("systemPath:"+systemPath);
+        }else if ("Linux".equals(systemType.substring(0,5))){
+            System.out.println("Linux系统");
+            System.out.println("systemPath:"+systemPath);
+            systemPath = "/home/tea";
+            System.out.println("systemPath:"+systemPath);
+        }
+    }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");

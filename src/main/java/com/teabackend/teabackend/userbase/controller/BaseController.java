@@ -1,5 +1,6 @@
 package com.teabackend.teabackend.userbase.controller;
 
+import com.teabackend.teabackend.AliPay.controller.PayDoController;
 import com.teabackend.teabackend.comment.Bean.Result;
 import com.teabackend.teabackend.userbase.bean.UserBodyDO;
 import com.teabackend.teabackend.userbase.bean.UserLoginVO;
@@ -27,6 +28,8 @@ public class BaseController {
 
     @Autowired
     private BaseService baseService;
+@Autowired
+    private PayDoController payDoController;
 
     @ApiOperation(value = "用户是否登录", notes = "根据id查询用户信息")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, dataType = "String")
@@ -91,6 +94,8 @@ public class BaseController {
             result.fail("登录失败");
             return result;
         }
+        System.out.println("getUser_id:"+userBodyDO.getUser_id());
+        payDoController.queryList(userBodyDO.getUser_id());
         HttpSession session = request.getSession();
         session.setAttribute("user_body", userBodyDO);
         result.success("登录成功", userBodyDO);

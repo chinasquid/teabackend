@@ -1,5 +1,6 @@
 package com.teabackend.teabackend.shop.dao;
 
+import com.teabackend.teabackend.shop.bean.AddressItemVO;
 import com.teabackend.teabackend.shop.bean.ShopCarItemDTO;
 import com.teabackend.teabackend.shop.bean.ShopOrderItemVO;
 import org.apache.ibatis.annotations.*;
@@ -66,4 +67,26 @@ public interface ShopBaseDao {
      */
     @Update("update shop_car set number = #{number} ,all_price = #{all_price} where goods_id = #{goods_id} and user_id = #{user_id}")
     void updateShopItemNumber(ShopCarItemDTO shopCarItemDTO);
+
+    /**
+     * 添加收货地址
+     * @param addressItemVO
+     */
+    @Insert("insert into address (user_id,name,address,phone) values(#{user_id},#{name},#{address},#{phone})")
+    void addNewAddress(AddressItemVO addressItemVO);
+
+    /**
+     * 获取收货地址
+     * @param user_id
+     * @return
+     */
+    @Select("select address_id,name,user_id,address,phone from address where user_id = #{user_id}")
+    ArrayList<AddressItemVO> getAllAddress(String user_id);
+
+    /**
+     * 删除单个地址
+     * @param address_id
+     */
+    @Delete(("delete from address where address_id = #{address_id}"))
+    void deletedAddress(Integer address_id);
 }

@@ -58,7 +58,6 @@ public class BusinessBaseController {
             result.fail("登录过期，请登录后重试");
             return result;
         }
-        System.out.println("userBodyDO:"+userBodyDO);
         String user_name = userBodyDO.getUser_name();
         BusinessAllInformationDTO newAllInformationDTO = new BusinessAllInformationDTO();
         allInformationDTO.setUser_id(userBodyDO.getUser_id());

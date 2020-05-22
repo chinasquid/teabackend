@@ -106,8 +106,7 @@ public class BaseService {
      * @return
      */
     public UserBodyDO getUserBody(String phone) {
-        UserBodyDO userBodyDO = new UserBodyDO();
-        userBodyDO = baseDao.selectUserBody(phone);
+        UserBodyDO userBodyDO = baseDao.selectUserBody(phone);
         return userBodyDO;
     }
 
